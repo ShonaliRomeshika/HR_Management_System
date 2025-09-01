@@ -11,8 +11,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -30,6 +33,8 @@ public class User {
     private String code;
     private String email;
     private UUID companyId;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -87,6 +92,14 @@ public class User {
     public void setCompanyId(UUID companyId) {
         this.companyId = companyId;
     }
+    
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
     
     public LocalDateTime getCreatedAt() {
 		return createdAt;
