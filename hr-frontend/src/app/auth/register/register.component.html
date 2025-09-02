@@ -1,1 +1,23 @@
-<p>register works!</p>
+<div class="register-container">
+  <h2>Register Super Admin & Company</h2>
+
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <input type="text" placeholder="Company Name" [(ngModel)]="registerData.companyName" name="companyName" required />
+    <input type="email" placeholder="Company Email" [(ngModel)]="registerData.companyEmail" name="companyEmail" required />
+    <input type="text" placeholder="Address" [(ngModel)]="registerData.address" name="address" required />
+    <input type="text" placeholder="Phone Number" [(ngModel)]="registerData.phoneNumber" name="phoneNumber" required />
+
+    <input type="text" placeholder="Super Admin Username" [(ngModel)]="registerData.superAdminUsername" name="superAdminUsername" required />
+    <input type="email" placeholder="Super Admin Email" [(ngModel)]="registerData.superAdminEmail" name="superAdminEmail" required />
+    <input type="password" placeholder="Password" [(ngModel)]="registerData.password" name="password" required />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div *ngIf="token">
+    ✅ Registered successfully! Token: <small>{{ token }}</small>
+  </div>
+  <div *ngIf="error">
+    ❌ {{ error }}
+  </div>
+</div>
