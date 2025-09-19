@@ -1,23 +1,122 @@
 <div class="register-container">
-  <h2>Register Super Admin & Company</h2>
+  <div class="logo-section">
+    <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
+    <h1 class="system-name">PeopleRecords</h1>
+  </div>
 
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-    <input type="text" placeholder="Company Name" [(ngModel)]="registerData.companyName" name="companyName" required />
-    <input type="email" placeholder="Company Email" [(ngModel)]="registerData.companyEmail" name="companyEmail" required />
-    <input type="text" placeholder="Address" [(ngModel)]="registerData.address" name="address" required />
-    <input type="text" placeholder="Phone Number" [(ngModel)]="registerData.phoneNumber" name="phoneNumber" required />
+  <h2 *ngIf="step === 1">Register Company</h2>
+  <h2 *ngIf="step === 2">Register Admin</h2>
 
-    <input type="text" placeholder="Super Admin Username" [(ngModel)]="registerData.superAdminUsername" name="superAdminUsername" required />
-    <input type="email" placeholder="Super Admin Email" [(ngModel)]="registerData.superAdminEmail" name="superAdminEmail" required />
-    <input type="password" placeholder="Password" [(ngModel)]="registerData.password" name="password" required />
+  <!-- Step 1: Company Form -->
+  <form *ngIf="step === 1" (ngSubmit)="goToAdminForm(companyForm)" #companyForm="ngForm" novalidate>
+    <!-- Company Name -->
+    <input 
+      type="text" 
+      placeholder="Company Name"
+      [(ngModel)]="companyData.companyName" 
+      name="companyName"
+      required
+      minlength="3"
+      #companyName="ngModel" />
+    <div class="error" *ngIf="companyName.invalid && companyName.touched">
+      Company Name is required (min 3 characters).
+    </div>
 
+    <!-- Company Email -->
+    <input 
+      type="email"
+      placeholder="Company Email"
+      [(ngModel)]="companyData.companyEmail" 
+      name="companyEmail"
+      required
+      email
+      #companyEmail="ngModel" />
+    <div class="error" *ngIf="companyEmail.invalid && companyEmail.touched">
+      Please enter a valid email.
+    </div>
+
+    <!-- Address -->
+    <input 
+      type="text" 
+      placeholder="Address"
+      [(ngModel)]="companyData.address" 
+      name="address"
+      required
+      minlength="5"
+      #address="ngModel" />
+    <div class="error" *ngIf="address.invalid && address.touched">
+      Address is required (min 5 characters).
+    </div>
+
+    <!-- Phone -->
+    <input 
+      type="text" 
+      placeholder="Phone Number"
+      [(ngModel)]="companyData.phoneNumber" 
+      name="phoneNumber"
+      required
+      pattern="^[0-9]{10}$"
+      #phoneNumber="ngModel" />
+    <div class="error" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+      Phone number must be 10 digits.
+    </div>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <!-- Step 2: Admin Form -->
+  <form *ngIf="step === 2" (ngSubmit)="onSubmit(adminForm)" #adminForm="ngForm" novalidate>
+    <!-- Username -->
+    <input 
+      type="text" 
+      placeholder="Super Admin Username"
+      [(ngModel)]="adminData.superAdminUsername" 
+      name="superAdminUsername"
+      required
+      minlength="3"
+      #superAdminUsername="ngModel" />
+    <div class="error" *ngIf="superAdminUsername.invalid && superAdminUsername.touched">
+      Username is required (min 3 characters).
+    </div>
+
+    <!-- Email -->
+    <input 
+      type="email" 
+      placeholder="Super Admin Email"
+      [(ngModel)]="adminData.superAdminEmail" 
+      name="superAdminEmail"
+      required
+      email
+      #superAdminEmail="ngModel" />
+    <div class="error" *ngIf="superAdminEmail.invalid && superAdminEmail.touched">
+      Please enter a valid email.
+    </div>
+
+    <!-- Password -->
+    <input 
+      type="password" 
+      placeholder="Password"
+      [(ngModel)]="adminData.password" 
+      name="password"
+      required
+      minlength="6"
+      #password="ngModel" />
+    <div class="error" *ngIf="password.invalid && password.touched">
+      Password is required (min 6 characters).
+    </div>
+
+    <button type="button" (click)="goBack()">Back</button>
     <button type="submit">Register</button>
   </form>
 
-  <div *ngIf="token">
-    ✅ Registered successfully! Token: <small>{{ token }}</small>
+  <!-- Messages -->
+  <div *ngIf="token" class="success">
+    ✅ Registered successfully!
   </div>
-  <div *ngIf="error">
+  <div *ngIf="error" class="error">
     ❌ {{ error }}
+  </div>
+  <div class="register-link">
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
   </div>
 </div>
