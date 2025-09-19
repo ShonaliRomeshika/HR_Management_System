@@ -1,0 +1,89 @@
+.home-container {
+  text-align: center;
+  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  min-height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #3f51b5;
+}
+
+.subtitle {
+  margin: 25px 0;
+  font-size: 22px;
+  color: #555;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+ .home-card {
+  cursor: pointer;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontal centering */
+  justify-content: center; /* vertical centering */
+  text-align: center;
+  padding: 30px 20px;
+
+}
+
+.home-card mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* take full height of card */
+  padding: 0 !important; /* remove default padding */
+}
+
+.home-card mat-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: flex; /* use flex to center itself */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Card Colors */
+.home-card.company { background: #1976d2; }   /* Blue */
+.home-card.employees { background: #388e3c; } /* Green */
+.home-card.departments { background: #f57c00; } /* Orange */
+.home-card.designations { background: #8e24aa; } /* Purple */
+.home-card.users { background: #d32f2f; } /* Red */
+
+.home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+}
