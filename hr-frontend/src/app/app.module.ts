@@ -15,6 +15,9 @@ import { HomeComponent } from './home/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { DesignationListComponent } from './designation/designation-list/designation-list/designation-list.component';
+import { DesignationCreateComponent } from './designation/designation-create/designation-create/designation-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DesignationListComponent,
+    DesignationCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
