@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  step = 1; // track current step
+  step = 1; 
 
   companyData = {
     companyName: '',
@@ -39,7 +39,7 @@ export class RegisterComponent {
       this.step = 2;
     } else {
       this.error = 'Please fill all required company details correctly.';
-      setTimeout(() => (this.error = null), 3000); // hide error after 3s
+      setTimeout(() => (this.error = null), 3000); 
     }
   }
 
@@ -65,9 +65,9 @@ export class RegisterComponent {
       next: (res) => {
         this.token = res.token;
         localStorage.setItem('token', res.token);
- this.snackBar.open('✅ Login successful!', 'Close', {
+ this.snackBar.open('✅ Register successful!', 'Close', {
         duration: 3000,
-        panelClass: ['snackbar-success'] // custom success class
+        panelClass: ['snackbar-success'] 
       });
         this.error = null;
         this.router.navigate(['/login']);

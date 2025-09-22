@@ -24,19 +24,23 @@ export class LoginComponent {
 
   onLogin() {
   this.authService.login(this.loginData).subscribe({
-    next: () => {
+    next: (res: any) => {   
+      localStorage.setItem('token', res.token);
+
       this.snackBar.open('✅ Login successful!', 'Close', {
         duration: 3000,
-        panelClass: ['snackbar-success'] // custom success class
+        panelClass: ['snackbar-success'] 
       });
+
+      this.router.navigate(['/home']);
     },
     error: () => {
       this.snackBar.open('❌ Invalid email or password', 'Close', {
         duration: 3000,
-        panelClass: ['snackbar-error'] // custom error class
+        panelClass: ['snackbar-error'] 
       });
     }
   });
-
 }
+
 }
