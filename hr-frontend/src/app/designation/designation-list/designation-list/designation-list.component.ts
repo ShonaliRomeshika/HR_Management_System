@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Designation, DesignationService } from '../../designation.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
+
 
 @Component({
   selector: 'app-designation-list',
@@ -10,7 +13,11 @@ import { Designation, DesignationService } from '../../designation.service';
 export class DesignationListComponent implements OnInit {
   designations: Designation[] = [];
 
-  constructor(private service: DesignationService, private router: Router) {}
+  constructor(
+    private service: DesignationService, 
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadDesignations();
@@ -29,11 +36,18 @@ export class DesignationListComponent implements OnInit {
   this.service.getAll(token).subscribe(data => this.designations = data);
 }
 
-deleteDesignation(id: string) {
-  if (confirm('Are you sure you want to delete this designation?')) {
-    const token = localStorage.getItem('token')!;
-    this.service.delete(id, token).subscribe(() => this.loadDesignations());
-  }
+deleteDesignation(id: string, title?: string) {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    width: '350px',
+    data: { item: title || 'this designation' }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      const token = localStorage.getItem('token')!;
+      this.service.delete(id, token).subscribe(() => this.loadDesignations());
+    }
+  });
 }
 
 }

@@ -18,7 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { DesignationListComponent } from './designation/designation-list/designation-list/designation-list.component';
 import { DesignationCreateComponent } from './designation/designation-create/designation-create/designation-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     DesignationListComponent,
-    DesignationCreateComponent
+    DesignationCreateComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
