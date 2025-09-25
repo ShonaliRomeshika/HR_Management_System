@@ -25,7 +25,7 @@ export class DesignationListComponent implements OnInit {
   }
 
  loadDesignations() {
-  const token = localStorage.getItem('token')!; // JWT token
+  const token = localStorage.getItem('token')!; 
   this.service.getAll(token).subscribe(data => this.designations = data);
 }
 

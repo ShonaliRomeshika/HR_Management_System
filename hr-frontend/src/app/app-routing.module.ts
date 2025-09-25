@@ -9,7 +9,7 @@ import { DesignationListComponent } from './designation/designation-list/designa
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'designations', component: DesignationListComponent },
   { path: 'designations/create', component: DesignationCreateComponent },
