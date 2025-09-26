@@ -1,0 +1,40 @@
+<div class="container mt-4 form-wrapper">
+  <div class="logo-section">
+    <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
+    <h1 class="system-name">PeopleRecords</h1>
+  </div>
+  <h2>{{ id ? 'Update' : 'Add' }} Department</h2>
+  <form [formGroup]="departmentForm" (ngSubmit)="save()">
+    
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Department Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" />
+      <div *ngIf="f['name'].touched && f['name'].invalid" class="error">
+        <small *ngIf="f['name'].errors?.['required']">Department Name is required.</small>
+        <small *ngIf="f['name'].errors?.['maxlength']">name cannot exceed 50 characters.</small>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input id="description" type="text" class="form-control" formControlName="description" />
+      <div *ngIf="f['description'].touched && f['description'].invalid" class="error">
+        <small *ngIf="f['description'].errors?.['required']">Description is required.</small>
+        <small *ngIf="f['description'].errors?.['minlength']">Description must be at least 5 characters.</small>
+        <small *ngIf="f['description'].errors?.['maxlength']">Description cannot exceed 200 characters.</small>
+      </div>
+    </div>
+
+    <!-- Actions -->
+<div class="mt-3">
+  <button type="submit" class="btn btn-success me-2" [disabled]="departmentForm.invalid">
+    {{ id ? 'Update' : 'Create' }}
+  </button>
+  <button type="button" class="btn btn-secondary" routerLink="/departments">Cancel</button>
+</div>
+
+  </form>
+</div>
+

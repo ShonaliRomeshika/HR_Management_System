@@ -20,6 +20,8 @@ import { DesignationCreateComponent } from './designation/designation-create/des
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DepartmentCreateComponent } from './department/department-create/department-create/department-create.component';
+import { DepartmentListComponent } from './department/department-list/department-list/department-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     HomeComponent,
     DesignationListComponent,
     DesignationCreateComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DepartmentCreateComponent,
+    DepartmentListComponent
   ],
   imports: [
     BrowserModule,
