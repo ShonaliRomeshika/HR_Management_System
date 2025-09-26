@@ -1,1 +1,35 @@
-<p>department-list works!</p>
+<div class="designation-container">
+    <div class="header">
+    <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
+    <h1 class="title">PeopleRecords</h1>
+  </div>
+  <h2>Departments</h2>
+  <div class="top-bar">
+    <button class="btn btn-primary" (click)="addDepartment()">
+      + Add Department
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Department Name</th>
+          <th>Description</th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let des of departments">
+          <td>{{ des.name }}</td>
+          <td>{{ des.description }}</td>
+          <td class="actions">
+            <button class="btn btn-warning me-2" (click)="updateDepartment(des.id!)">✏️ Update</button>
+            <button class="btn btn-danger" (click)="deleteDepartment(des.id!)">🗑️ Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
