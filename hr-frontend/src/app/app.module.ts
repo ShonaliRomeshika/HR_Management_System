@@ -24,6 +24,7 @@ import { DepartmentCreateComponent } from './department/department-create/depart
 import { DepartmentListComponent } from './department/department-list/department-list/department-list.component';
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
+import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EmployeeListComponent } from './employee/employee-list/employee-list/em
     DepartmentCreateComponent,
     DepartmentListComponent,
     EmployeeCreateComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeViewComponent
   ],
   imports: [
     BrowserModule,

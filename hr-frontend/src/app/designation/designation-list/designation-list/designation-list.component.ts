@@ -28,7 +28,7 @@ export class DesignationListComponent implements OnInit {
   }
 
   updateDesignation(id: string) {
-    this.router.navigate(['/designations/create', id]);
+    this.router.navigate(['/designations/update', id]);
   }
 
  loadDesignations() {

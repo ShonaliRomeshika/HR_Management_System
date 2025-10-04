@@ -29,7 +29,7 @@ export class DepartmentListComponent implements OnInit {
   }
 
   updateDepartment(id: string) {
-    this.router.navigate(['/departments/create', id]);
+    this.router.navigate(['/departments/update', id]);
   }
 
  loadDepartments() {

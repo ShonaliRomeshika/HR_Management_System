@@ -18,6 +18,9 @@ export interface Employee {
   employmentType: string;
   dateOfJoining?: string;
   salary?: number;
+
+  department?: { id: string; name: string };
+  designation?: { id: string; title: string };
 }
 
 @Injectable({
