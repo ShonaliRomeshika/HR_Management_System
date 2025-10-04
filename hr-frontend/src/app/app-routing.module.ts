@@ -7,6 +7,7 @@ import { DesignationCreateComponent } from './designation/designation-create/des
 import { DesignationListComponent } from './designation/designation-list/designation-list/designation-list.component';
 import { DepartmentCreateComponent } from './department/department-create/department-create/department-create.component';
 import { DepartmentListComponent } from './department/department-list/department-list/department-list.component';
+import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'departments', component: DepartmentListComponent },
   { path: 'departments/create', component: DepartmentCreateComponent },
   { path: 'departments/create/:id', component: DepartmentCreateComponent },
+
+  { path: 'employees/create', component: EmployeeCreateComponent },
 ];
 
 @NgModule({

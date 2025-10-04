@@ -22,6 +22,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog/c
 import { MatDialogModule } from '@angular/material/dialog';
 import { DepartmentCreateComponent } from './department/department-create/department-create/department-create.component';
 import { DepartmentListComponent } from './department/department-list/department-list/department-list.component';
+import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
+import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { DepartmentListComponent } from './department/department-list/department
     DesignationCreateComponent,
     ConfirmDialogComponent,
     DepartmentCreateComponent,
-    DepartmentListComponent
+    DepartmentListComponent,
+    EmployeeCreateComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
