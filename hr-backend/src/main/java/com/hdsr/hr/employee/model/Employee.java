@@ -112,10 +112,10 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getNationalId() {
+    public String getNic() {
         return nic;
     }
-    public void setNationalId(String nic) {
+    public void setNic(String nic) {
         this.nic = nic;
     }
 

@@ -34,7 +34,7 @@ public class EmployeeService {
             employee.setName(updatedEmployee.getName());
             employee.setDateOfBirth(updatedEmployee.getDateOfBirth());
             employee.setGender(updatedEmployee.getGender());
-            employee.setNationalId(updatedEmployee.getNationalId());
+            employee.setNic(updatedEmployee.getNic());
             employee.setMaritalStatus(updatedEmployee.getMaritalStatus());
             employee.setContactNumber(updatedEmployee.getContactNumber());
             employee.setEmail(updatedEmployee.getEmail());
