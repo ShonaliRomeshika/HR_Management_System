@@ -48,11 +48,18 @@ export class EmployeeCreateComponent implements OnInit {
     });
 
     const token = localStorage.getItem('token')!;
+
     this.departmentService.getAll(token).subscribe(res => this.departments = res);
     this.designationService.getAll(token).subscribe(res => this.designations = res);
 
     if (this.id) {
-      this.service.getById(this.id, token).subscribe(emp => this.employeeForm.patchValue(emp));
+      this.service.getById(this.id, token).subscribe(emp => {
+        this.employeeForm.patchValue({
+          ...emp,
+          departmentId: emp.department?.id,
+          designationId: emp.designation?.id
+        });
+      });
     }
   }
 
@@ -62,11 +69,22 @@ export class EmployeeCreateComponent implements OnInit {
       return;
     }
 
-    const emp = this.employeeForm.value;
+    const formValue = this.employeeForm.value;
     const token = localStorage.getItem('token')!;
 
+    // ✅ Convert departmentId and designationId to nested objects
+    const employeePayload = {
+      ...formValue,
+      department: { id: formValue.departmentId },
+      designation: { id: formValue.designationId }
+    };
+
+    // Optionally remove the raw IDs (not necessary but clean)
+    delete (employeePayload as any).departmentId;
+    delete (employeePayload as any).designationId;
+
     if (this.id) {
-      this.service.update(this.id, emp, token).subscribe({
+      this.service.update(this.id, employeePayload, token).subscribe({
         next: () => {
           this.snackBar.open('✅ Employee updated successfully!', 'Close', { duration: 3000 });
           this.router.navigate(['/employees']);
@@ -76,7 +94,7 @@ export class EmployeeCreateComponent implements OnInit {
         }
       });
     } else {
-      this.service.create(emp, token).subscribe({
+      this.service.create(employeePayload, token).subscribe({
         next: () => {
           this.snackBar.open('✅ Employee created successfully!', 'Close', { duration: 3000 });
           this.router.navigate(['/employees']);
