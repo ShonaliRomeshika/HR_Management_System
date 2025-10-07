@@ -1,31 +1,28 @@
-<div class="container mt-4 list-wrapper">
-  <div class="logo-section">
+<div class="employee-container">
+  <div class="header">
     <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
-    <h1 class="system-name">PeopleRecords</h1>
+    <h1 class="title">PeopleRecords</h1>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Employee List</h2>
+  <h2>Employees</h2>
+
+  <div class="top-bar">
     <button class="btn btn-primary" routerLink="/employees/create">
       + Add Employee
     </button>
   </div>
 
-  <!-- Employee Table -->
-  <div class="table-responsive">
-    <table class="table table-striped table-hover">
-      <thead class="table-dark">
+  <div class="table-wrapper">
+    <table>
+      <thead>
         <tr>
-          <th>Employee Code</th>
+          <th>Code</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Contact</th>
           <th>Department</th>
           <th>Designation</th>
-          <th>Employment Type</th>
-          <th>Date of Joining</th>
-          <th>Salary</th>
-          <th>Actions</th>
+          <th>Contact</th>
+          <th class="actions-column">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -33,32 +30,19 @@
           <td>{{ emp.employeeCode }}</td>
           <td>{{ emp.name }}</td>
           <td>{{ emp.email }}</td>
-          <td>{{ emp.contactNumber }}</td>
           <td>{{ emp.department?.name }}</td>
           <td>{{ emp.designation?.title }}</td>
-          <td>{{ emp.employmentType }}</td>
-          <td>{{ emp.dateOfJoining | date: 'yyyy-MM-dd' }}</td>
-          <td>{{ emp.salary | currency:'USD' }}</td>
-         <td>
-  <div class="d-flex gap-1">
-    <button class="btn btn-sm btn-info" [routerLink]="['/employees/view', emp.id]">
-      View
-    </button>
-    <button class="btn btn-sm btn-warning" [routerLink]="['/employees/edit', emp.id]">
-      Edit
-    </button>
-    <button class="btn btn-sm btn-danger" (click)="confirmDelete(emp)">
-      Delete
-    </button>
-  </div>
-</td>
-
+          <td>{{ emp.contactNumber }}</td>
+          <td class="actions">
+            <button class="btn btn-info" (click)="viewEmployee(emp.id!)">👁️ View</button>
+            <button class="btn btn-warning" (click)="editEmployee(emp.id!)">✏️ Edit</button>
+            <button class="btn btn-danger" (click)="deleteEmployee(emp.id!, emp.name)">🗑️ Delete</button>
+          </td>
         </tr>
         <tr *ngIf="employees.length === 0">
-          <td colspan="10" class="text-center">No employees found</td>
+          <td colspan="7" class="text-center">No employees found</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-

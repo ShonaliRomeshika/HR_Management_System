@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmployeeService, Employee } from '../../employee.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { Employee, EmployeeService } from '../../employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -8,60 +10,42 @@ import { EmployeeService, Employee } from '../../employee.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-emp: any;
-confirmDelete(_t26: Employee) {
-throw new Error('Method not implemented.');
-}
   employees: Employee[] = [];
-  loading: boolean = false;
-  errorMessage: string = '';
-  token: string = '';
 
   constructor(
-    private employeeService: EmployeeService,
-    private router: Router
+    private service: EmployeeService,
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    // Retrieve JWT token from localStorage (or AuthService if you have one)
-    this.token = localStorage.getItem('token') || '';
-    this.getEmployees();
+    this.loadEmployees();
   }
 
-  getEmployees(): void {
-    this.loading = true;
-    this.employeeService.getAll(this.token).subscribe({
-      next: (data) => {
-        this.employees = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching employees:', err);
-        this.errorMessage = 'Failed to load employees.';
-        this.loading = false;
+  loadEmployees(): void {
+    const token = localStorage.getItem('token')!;
+    this.service.getAll(token).subscribe(res => (this.employees = res));
+  }
+
+  viewEmployee(id: string) {
+    this.router.navigate(['/employee/view', id]);
+  }
+
+  editEmployee(id: string) {
+    this.router.navigate(['/employees/update', id]);
+  }
+
+  deleteEmployee(id: string, name?: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: { item: name || 'this employee' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const token = localStorage.getItem('token')!;
+        this.service.delete(id, token).subscribe(() => this.loadEmployees());
       }
     });
-  }
-
-  addEmployee(): void {
-    this.router.navigate(['/employees/create']);
-  }
-
-  editEmployee(id: string): void {
-    this.router.navigate(['/employees/edit', id]);
-  }
-
-  deleteEmployee(id: string): void {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      this.employeeService.delete(id, this.token).subscribe({
-        next: () => {
-          this.getEmployees(); // refresh list after delete
-        },
-        error: (err) => {
-          console.error('Error deleting employee:', err);
-          this.errorMessage = 'Failed to delete employee.';
-        }
-      });
-    }
   }
 }
