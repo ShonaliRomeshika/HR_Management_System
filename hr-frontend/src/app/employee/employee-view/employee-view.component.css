@@ -1,0 +1,52 @@
+.detail-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #3f51b5;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.employee-card {
+  padding: 20px;
+  background: #f9fafc;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.employee-card p {
+  margin: 8px 0;
+  font-size: 1.1rem;
+}
+
+.employee-card strong {
+  color: #3f51b5;
+}
