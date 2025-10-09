@@ -16,8 +16,11 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public List<Department> getAllDepartments() {
-        return departmentRepository.findAll();
+//    public List<Department> getAllDepartments() {
+//        return departmentRepository.findAll();
+//    }
+    public List<Department> getAllDepartmentsByCompany(UUID companyId) {
+        return departmentRepository.findByCompanyId(companyId);
     }
 
     public Department getDepartmentById(UUID id) {

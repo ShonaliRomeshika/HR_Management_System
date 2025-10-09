@@ -1,5 +1,6 @@
 package com.hdsr.hr.designation.service;
 
+import com.hdsr.hr.department.model.Department;
 import com.hdsr.hr.designation.model.Designation;
 import com.hdsr.hr.designation.repository.DesignationRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class DesignationService {
         this.designationRepository = designationRepository;
     }
 
-    public List<Designation> getAllDesignations() {
-        return designationRepository.findAll();
+    public List<Designation> getAllDesignationsByCompany(UUID companyId) {
+        return designationRepository.findByCompanyId(companyId);
     }
 
     public Designation getDesignationById(UUID id) {

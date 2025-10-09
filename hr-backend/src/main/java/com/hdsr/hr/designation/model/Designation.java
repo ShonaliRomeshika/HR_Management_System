@@ -26,6 +26,7 @@ public class Designation {
 
     private String title;
     private String description;
+    private UUID companyId;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -62,6 +63,14 @@ public class Designation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public UUID getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(UUID companyId) {
+        this.companyId = companyId;
     }
 
     public LocalDateTime getCreatedAt() {

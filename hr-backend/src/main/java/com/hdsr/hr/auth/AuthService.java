@@ -6,7 +6,6 @@ import com.hdsr.hr.user.model.Role;
 import com.hdsr.hr.user.model.User;
 import com.hdsr.hr.user.repository.UserRepository;
 import org.springframework.security.authentication.*;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +30,11 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
     }
 
+    /**
+     * Register company + super admin + return JWT with companyId embedded
+     */
     public AuthResponse register(RegisterRequestDTO req) {
-        // Create Company
+        // Create new company
         Company company = new Company();
         company.setName(req.getCompanyName());
         company.setEmail(req.getCompanyEmail());
@@ -40,7 +42,7 @@ public class AuthService {
         company.setPhoneNumber(req.getPhoneNumber());
         companyRepo.save(company);
 
-        // Create Super Admin
+        // Create super admin user for that company
         User superAdmin = new User();
         superAdmin.setUsername(req.getSuperAdminUsername());
         superAdmin.setEmail(req.getSuperAdminEmail());
@@ -49,32 +51,30 @@ public class AuthService {
         superAdmin.setCompanyId(company.getId());
         userRepo.save(superAdmin);
 
-        // Generate JWT
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-                .username(superAdmin.getEmail())
-                .password(superAdmin.getPassword())
-                .roles(superAdmin.getRole().name())
-                .build();
+        // Generate JWT token that includes companyId + role
+        String token = jwtUtil.generateToken(superAdmin);
 
-        String token = jwtUtil.generateToken(userDetails);
+        // Return response
         return new AuthResponse(token);
     }
 
+    /**
+     * Login and return JWT with companyId + role
+     */
     public AuthResponse login(LoginRequestDTO req) {
+        // Authenticate credentials
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword())
         );
 
+        // Fetch user from DB
         User user = userRepo.findByEmail(req.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
+        // Generate JWT with claims (companyId + role)
+        String token = jwtUtil.generateToken(user);
 
-        String token = jwtUtil.generateToken(userDetails);
+        // Return response
         return new AuthResponse(token);
     }
 }

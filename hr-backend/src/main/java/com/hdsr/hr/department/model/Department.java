@@ -27,6 +27,7 @@ public class Department {
     private String name;
     private String description;
     private String code;
+    private UUID companyId;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -71,6 +72,14 @@ public class Department {
     
     public void setCode(String code) {
     	this.code= code;
+    }
+    
+    public UUID getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(UUID companyId) {
+        this.companyId = companyId;
     }
 
     public LocalDateTime getCreatedAt() {

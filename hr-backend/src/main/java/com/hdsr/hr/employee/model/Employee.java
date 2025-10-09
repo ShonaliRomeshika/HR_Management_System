@@ -63,6 +63,8 @@ public class Employee {
     private LocalDate dateOfJoining;
 
     private Double salary;
+    
+    private UUID companyId;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -180,6 +182,14 @@ public class Employee {
     }
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+    
+    public UUID getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(UUID companyId) {
+        this.companyId = companyId;
     }
 
     public LocalDateTime getCreatedAt() {
