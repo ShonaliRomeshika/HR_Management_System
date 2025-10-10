@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { DesignationListComponent } from './designation/designation-list/designation-list/designation-list.component';
 import { DesignationCreateComponent } from './designation/designation-create/designation-create/designation-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { DepartmentListComponent } from './department/department-list/department
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
+import { NavbarComponent } from './shared/nav-bar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { EmployeeViewComponent } from './employee/employee-view/employee-view.co
     DepartmentListComponent,
     EmployeeCreateComponent,
     EmployeeListComponent,
-    EmployeeViewComponent
+    EmployeeViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { EmployeeViewComponent } from './employee/employee-view/employee-view.co
     MatCardModule,
     MatIconModule,
     MatButtonModule,
+    MatToolbarModule,
     ReactiveFormsModule,
     MatDialogModule
   ],
