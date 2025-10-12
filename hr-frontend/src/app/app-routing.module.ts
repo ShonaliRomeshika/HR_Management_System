@@ -10,6 +10,7 @@ import { DepartmentListComponent } from './department/department-list/department
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: 'employees/create', component: EmployeeCreateComponent },
   { path: 'employees/update/:id', component: EmployeeCreateComponent },
   { path: 'employee/view/:id', component: EmployeeViewComponent },
+
+  { path: 'users/create', component: AddUserComponent },
 ];
 
 @NgModule({

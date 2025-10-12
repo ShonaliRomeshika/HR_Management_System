@@ -1,13 +1,29 @@
 package com.hdsr.hr.auth;
 
+import java.util.UUID;
+
 public class AuthResponse {
     private String token;
+    private UUID userId;
 
-    public AuthResponse(String token) {
+    public AuthResponse(String token, UUID userId) {
         this.token = token;
+        this.userId = userId;
     }
 
     public String getToken() {
         return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }
