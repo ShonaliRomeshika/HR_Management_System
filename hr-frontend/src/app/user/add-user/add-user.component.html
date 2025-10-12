@@ -1,0 +1,21 @@
+<div class="add-user-container">
+  <mat-card class="add-user-card">
+    <h2>Add New User</h2>
+
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter name" [(ngModel)]="userData.name" name="name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter email" [(ngModel)]="userData.email" name="email" required />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="submit-btn">
+        Add User
+      </button>
+    </form>
+  </mat-card>
+</div>

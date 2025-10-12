@@ -5,7 +5,8 @@ import com.hdsr.hr.company.repository.CompanyRepository;
 import com.hdsr.hr.user.model.Role;
 import com.hdsr.hr.user.model.User;
 import com.hdsr.hr.user.repository.UserRepository;
-import org.springframework.security.authentication.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +31,7 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
     }
 
-    /**
-     * Register company + super admin + return JWT with companyId embedded
-     */
+    /* Register company + super admin + return JWT + userId */
     public AuthResponse register(RegisterRequestDTO req) {
         // Create new company
         Company company = new Company();
@@ -51,30 +50,28 @@ public class AuthService {
         superAdmin.setCompanyId(company.getId());
         userRepo.save(superAdmin);
 
-        // Generate JWT token that includes companyId + role
+        // Generate JWT
         String token = jwtUtil.generateToken(superAdmin);
 
-        // Return response
-        return new AuthResponse(token);
+        //Return token and userId
+        return new AuthResponse(token, superAdmin.getId());
     }
 
-    /**
-     * Login and return JWT with companyId + role
-     */
+    /** Login and return JWT + userId */
     public AuthResponse login(LoginRequestDTO req) {
         // Authenticate credentials
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword())
         );
 
-        // Fetch user from DB
+        // Fetch user
         User user = userRepo.findByEmail(req.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Generate JWT with claims (companyId + role)
+        // Generate JWT
         String token = jwtUtil.generateToken(user);
 
-        // Return response
-        return new AuthResponse(token);
+        // Return token and userId
+        return new AuthResponse(token, user.getId());
     }
 }

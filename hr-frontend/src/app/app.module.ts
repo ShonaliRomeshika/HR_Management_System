@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DesignationListComponent } from './designation/designation-list/designation-list/designation-list.component';
 import { DesignationCreateComponent } from './designation/designation-create/designation-create/designation-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,7 @@ import { EmployeeCreateComponent } from './employee/employee-create/employee-cre
 import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
 import { NavbarComponent } from './shared/nav-bar/navbar/navbar.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { NavbarComponent } from './shared/nav-bar/navbar/navbar.component';
     EmployeeCreateComponent,
     EmployeeListComponent,
     EmployeeViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { NavbarComponent } from './shared/nav-bar/navbar/navbar.component';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     MatDialogModule
   ],

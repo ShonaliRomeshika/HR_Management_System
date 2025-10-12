@@ -26,11 +26,13 @@ export class LoginComponent {
   this.authService.login(this.loginData).subscribe({
     next: (res: any) => {   
       localStorage.setItem('token', res.token);
+      localStorage.setItem('userId', res.userId); 
 
       this.snackBar.open('✅ Login successful!', 'Close', {
         duration: 3000,
         panelClass: ['snackbar-success'] 
       });
+console.log('Login response:', res);
 
       this.router.navigate(['/home']);
     },
@@ -41,6 +43,8 @@ export class LoginComponent {
       });
     }
   });
+  
 }
+
 
 }
