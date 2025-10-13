@@ -1,22 +1,60 @@
 <app-navbar></app-navbar>
-<div class="add-user-container">
-  <mat-card class="add-user-card">
-    <h2>Add New User</h2>
 
-    <form (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter name" [(ngModel)]="userData.name" name="name" required />
-      </mat-form-field>
+<div class="container mt-4 form-wrapper">
+  <!-- Logo Section -->
+  <div class="logo-section">
+    <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
+    <h1 class="system-name">PeopleRecords</h1>
+  </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Enter email" [(ngModel)]="userData.email" name="email" required />
-      </mat-form-field>
+  <h2>Add New User</h2>
 
-      <button mat-raised-button color="primary" type="submit" class="submit-btn">
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        name="name"
+        [(ngModel)]="userData.name"
+        required
+        maxlength="100"
+      />
+      <div *ngIf="userForm.submitted && !userData.name" class="error">
+        <small>Name is required.</small>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        name="email"
+        [(ngModel)]="userData.email"
+        required
+      />
+      <div *ngIf="userForm.submitted && !userData.email" class="error">
+        <small>Email is required.</small>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-3">
+      <button
+        type="submit"
+        class="btn btn-success me-2"
+        [disabled]="userForm.invalid"
+      >
         Add User
       </button>
-    </form>
-  </mat-card>
+      <button type="button" class="btn btn-secondary" routerLink="/users">
+        Cancel
+      </button>
+    </div>
+  </form>
 </div>
