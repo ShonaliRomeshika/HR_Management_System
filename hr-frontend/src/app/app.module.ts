@@ -29,6 +29,7 @@ import { EmployeeListComponent } from './employee/employee-list/employee-list/em
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
 import { NavbarComponent } from './shared/nav-bar/navbar/navbar.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { UsersListComponent } from './user/users-list/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     EmployeeListComponent,
     EmployeeViewComponent,
     NavbarComponent,
-    AddUserComponent
+    AddUserComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

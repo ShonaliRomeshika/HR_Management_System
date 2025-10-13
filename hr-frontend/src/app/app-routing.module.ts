@@ -11,6 +11,7 @@ import { EmployeeCreateComponent } from './employee/employee-create/employee-cre
 import { EmployeeListComponent } from './employee/employee-list/employee-list/employee-list.component';
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { UsersListComponent } from './user/users-list/users-list/users-list.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'employees/update/:id', component: EmployeeCreateComponent },
   { path: 'employee/view/:id', component: EmployeeViewComponent },
 
+  { path: 'users', component: UsersListComponent },
   { path: 'users/create', component: AddUserComponent },
 ];
 

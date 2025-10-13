@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="designation-container">
+  <div class="header">
+    <img src="assets/logoHR.png" alt="PeopleRecords Logo" class="logo" />
+    <h1 class="title">PeopleRecords</h1>
+  </div>
+
+  <h2>Company Users</h2>
+
+  <div class="top-bar">
+    <button class="btn btn-primary" routerLink="/users/create">
+      + Add User
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading users...</div>
+  <!-- <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div> -->
+
+  <div class="table-wrapper" *ngIf="!loading && users.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td class="actions">
+            <button class="btn btn-danger" (click)="deleteUser(user.id)">🗑️ Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && users.length === 0" class="no-users">
+    No users found for your company.
+  </div>
+</div>

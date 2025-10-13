@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -77,5 +78,28 @@ public class UserService implements UserDetailsService {
         random.nextBytes(bytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
     }
+    
+    public List<User> getUsersByCompany(UUID currentUserId) {
+        User currentUser = userRepository.findById(currentUserId)
+                .orElseThrow(() -> new RuntimeException("Current user not found"));
+
+        UUID companyId = currentUser.getCompanyId();
+        return userRepository.findAllByCompanyId(companyId);
+    }
+    
+    public void removeUser(UUID currentUserId, UUID targetUserId) {
+        User currentUser = userRepository.findById(currentUserId)
+                .orElseThrow(() -> new RuntimeException("Current user not found"));
+
+        User targetUser = userRepository.findById(targetUserId)
+                .orElseThrow(() -> new RuntimeException("Target user not found"));
+
+        if (!targetUser.getCompanyId().equals(currentUser.getCompanyId())) {
+            throw new RuntimeException("You cannot delete users from another company");
+        }
+
+        userRepository.delete(targetUser);
+    }
+
 }
 
